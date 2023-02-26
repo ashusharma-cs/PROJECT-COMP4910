@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser')
 const ejs= require("ejs");
+let {PythonShell} = require('python-shell')
 const app = express();
 
 
@@ -18,10 +19,14 @@ app.get("/",(req,res)=>{
 
 })
 
-const apidata= require("./test10k.json")
+let api="";
+PythonShell.run('mainjson.py', null).then(messages=>{
+    api= require("./alltweets_filtered_keyword_relevant.json")
+  });
+
 
 app.get("/service",(req,res)=>{
-    res.send(apidata);
+    res.send(api);
 })
 
 const tweetSchema = {
