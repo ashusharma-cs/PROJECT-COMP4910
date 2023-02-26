@@ -1,0 +1,73 @@
+* {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.head {
+    /* background-color: red; */
+    text-align: center;
+}
+
+.content {
+    /* border: 2px solid red; */
+    border-radius: 50px;
+    margin: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    background: #36D1DC;
+ 
+    background-image: linear-gradient(50deg,
+            hsl(240deg 24% 83%) 0%,
+            hsl(256deg 22% 84%) 11%,
+            hsl(272deg 20% 85%) 22%,
+            hsl(291deg 18% 86%) 33%,
+            hsl(311deg 19% 88%) 44%,
+            hsl(326deg 22% 90%) 56%,
+            hsl(336deg 24% 92%) 67%,
+            hsl(345deg 24% 94%) 78%,
+            hsl(353deg 20% 96%) 89%,
+            hsl(0deg 8% 97%) 100%);
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+
+}
+
+.content .form {
+    height: 100%;
+    width: 40%;
+    border-right: 2px solid black;
+    margin-right: 12px;
+}
+
+.content .form form {
+    /* width: 50%; */
+    height: 100%;
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+form input,
+button {
+    margin: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border-color: transparent;
+    text-align: center;
+}
+
+form input {
+    outline: none;
+}
+
+.content .viz {
+    width: 60%;
+    height: 100%;
+    /* border: 2px solid green; */
+}
