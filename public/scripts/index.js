@@ -1,79 +1,88 @@
 
 const url="http://localhost:3000/service";
 
-
-
-
 const updateChart = ()=>{
 
-    let p= fetch(url);
-
-p.then((res)=>{
+  console.log('updateChart()');
+  
+  // fetch JSON data
+  let p = fetch(url);
+  
+  p.then((res)=>{
     return res.json();
-}).then((res)=>{
+  }).then((res)=>{
 
-    const full_date=res.map((item)=>{
-        return item.date.slice(0,10)
-    });
+      console.log("JSON returned " + Object.keys(res).length + " objects.");
+    
+      aLocation = getLocation();
+      topic = getTopic();
+      year = getYear();
+      
+      // DATE RANGE start end, on filter x > startyear x < endyear
+      // implement MONTHS
+      
+      console.log("Location: " + aLocation);
+      console.log("Topic: " + topic);
+      console.log("Year: " + year);
+      
+      let newArray = res.filter(function (obj){
+        return obj.date.slice(0,4) >= year &&
+               obj.rawContent.includes(topic) == true;
+      });
+      // console.log(newArray);
+      console.log("Amount of relevant tweets after filtering: " + newArray.length);
+      
+      let counter = {};
+      newArray.forEach(function(obj){
+        let key = obj.date.slice(0,4);
+        counter[key] = (counter[key] || 0) + 1
+      });
 
-    numtweets_2018 = numtweets_2019 = numtweets_2020 = numtweets_2021 = numtweets_2022 = numtweets_2023 = numtweets_other = 0;
-
-    for(let i = 0; i < full_date.length; i++){
-        switch(full_date[i].slice(0,4)){
-          case '2018':
-            numtweets_2018++;
-            continue;
-          case '2019':
-            numtweets_2019++;
-            continue;
-          case '2020':
-            numtweets_2020++;
-            continue;
-          case '2021':
-            numtweets_2021++;
-            continue;
-          case '2022':
-            numtweets_2022++;
-            continue;
-          case '2023':
-            numtweets_2023++;
-            continue;
-          default:
-            numtweets_other++;
-            continue;
-        };
-      };
-
-      years = ['2018','2019','2020','2021','2022','2023','Other'];
-      tweetsperyear = [numtweets_2018, numtweets_2019, numtweets_2020, numtweets_2021, numtweets_2022, numtweets_2023,numtweets_other];
-
+      let loccounter = {};
+      newArray.forEach(function(obj){
+        let key = obj.Location;
+        loccounter[key] = (loccounter[key] || 0) + 1
+      });
+      // console.log(loccounter);
+      
       // Update chart labels and data
       
-      // myChart.config.data.datasets[0].label = '';
-      chart.config.data.labels = years;
-      chart.config.data.datasets[0].data = tweetsperyear;
+      
+      chart.config.data.datasets[0].label = 'Number of tweets per year';
+      chart.config.data.labels = Object.keys(counter);
+      chart.config.data.datasets[0].data = Object.values(counter);
       chart.update();
-})
+    })
+    
+  }
 
-}
-
-
-
-
+  const getLocation = () =>{
+    // console.log(document.getElementById('location-select').value);
+    return document.getElementById('location-select').value;
+  }
+  
+  const getTopic = () =>{
+    // console.log(document.getElementById('topic-input').value);
+    return document.getElementById('topic-input').value;
+  }
+  
+  const getYear = () =>{
+    // console.log(document.getElementById('year-select').value);
+    return document.getElementById('year-select').value;
+  }
+  
 const canvas = document.getElementById('chart_elem');
 const ctx = canvas.getContext('2d');
 
-
-
 const data = {
-    labels: [],
-    datasets: [{
-      label: 'Number of tweets per year',
-      data: [],
-      backgroundColor: [
-        'rgba(255, 26, 104, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
+  labels: [],
+  datasets: [{
+    label: 'Number of tweets per year',
+    data: [],
+    backgroundColor: [
+      'rgba(255, 26, 104, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)',

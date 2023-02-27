@@ -20,18 +20,32 @@
 
   <h1 class="head">FRASER HEALTH DATA VISUALIZATION TOOL</h1>
 
+  <!-- ALL INPUT FUNCTIONS SHOULD UPDATE CHART, GET VALUE FUNCTIONS ARE TEMPORARY -->
+
   <div class="content container m-auto">
     <div class="form">
       <form action="/" method="post">
-        <input type="text" name="topic" id="" placeholder="ENTER TOPIC">
-        <button class="btn1" type="submit">SUBMIT</button>
+        <input type="text" name="topic" id="topic-input" placeholder="Enter a topic">
       </form>
     </div>
 
     <div class="viz">
-
       <canvas id="chart_elem"></canvas>
-      <button class="btn1" onclick="updateChart()">FETCH DATA</button>
+      <select class="sel1" onchange="" id="location-select">
+        <option value="" selected>Select All (Location)</option>
+        <option value="bc">British Columbia</option>
+        <option value="fh">Fraser Health</option>
+        <option value="ca">Canada</option>
+      </select>
+      <select class="sel1" onchange="" id="year-select">
+        <option value="" selected>Select All (Since Year)</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+      </select>
+      <button class="btn1" onclick="updateChart()">Update Chart</button>
     </div>
   </div>
 

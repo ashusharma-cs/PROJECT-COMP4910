@@ -81,3 +81,12 @@ form input {
     transform: scale(0.95);
 
 }
+
+.sel1{
+    border-radius: 12px;
+    border-color: transparent;
+    padding: 12px;
+    margin: 12px;
+    outline: none;
+    background-color: whitesmoke;
+}
