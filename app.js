@@ -23,16 +23,24 @@ app.get("/",(req,res)=>{
 
 
 // CONNECTION BETWEEN PYTHON SCRIPT AND NODEJS
-let api="";
+let api_script ="";
 PythonShell.run('mainjson.py', null).then(messages=>{
-    api= require("./alltweets_filtered_keyword_relevant.json")
+    api_script = require("./alltweets_filtered_keyword_relevant.json")
   });
 
+// Script to grab data directly from MongoDB and produce JSON file will go here
+// let api="";
+// PythonShell.run('.py', null).then(messages=>{
+//     api= require("./alltweets.json")
+// });
+
+// For now, JSON of all tweets is just included
+let api = require("./alltweets.json");
 
 // JSON DATA ROUTE
 app.get("/service",(req,res)=>{
     res.send(api);
-})
+});
 
 
 //DATABASE SCHEMA
