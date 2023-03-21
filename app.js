@@ -61,21 +61,21 @@ const Tweet= mongoose.model("tweets", tweetSchema);
 
 
 // A QUERY TO FIND ALL TWEETS
-Tweet.find((err,tweets)=>{
-    if(err)
-    {
-        console.log(err);
-    }
-    else
-    {
-        for (let i = 0; i < 2; i++) {
-            console.log(tweets[i].rawContent);
-        }
+// Tweet.find((err,tweets)=>{
+//     if(err)
+//     {
+//         console.log(err);
+//     }
+//     else
+//     {
+//         for (let i = 0; i < 2; i++) {
+//             console.log(tweets[i].rawContent);
+//         }
         
-    }
+//     }
         
     
-})
+// })
 
 // newTweet.save()
 
