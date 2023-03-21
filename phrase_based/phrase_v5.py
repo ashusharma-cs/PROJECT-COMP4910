@@ -8,7 +8,7 @@ from scipy.interpolate import make_interp_spline
 import spacy
 nlp = spacy.load("en_core_web_lg")
 
-df=pd.read_csv('alltweets_filtered_labelled.csv')
+df=pd.read_csv('phrase_based/alltweets_filtered_labelled.csv')
 
 tweet_content=df['rawContent'].array
 # labelled_tweets=df.loc[df.relVirtualCare>=0.5, ['rawContent']].to_numpy().reshape(-1)
@@ -44,7 +44,7 @@ for tweet in tweet_content:
     df.loc[i, 'candidate'] = '0'
   i += 1
 
-df.to_csv('alltweets_filtered_labelled.csv', index=False)
+df.to_csv('phrase_based/alltweets_filtered_labelled.csv', index=False)
 
 # df = pd.DataFrame.from_dict(scores.items())
 # df.columns = ['rawContent','phrase-based']
