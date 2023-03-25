@@ -6,10 +6,6 @@ import csv
 # ENTER API KEY
 openai.api_key = ""
 
-# I/O CSV files
-input_csv = 'alltweets_labelled_subset.csv'
-output_csv = 'gpt_labelled_tweets.csv'
-
 # Define a function to rate input message
 def rate_message(message):
     try:
@@ -23,14 +19,17 @@ def rate_message(message):
         print(e)
         return e
 
+# ENTER INPUT CSV
 # read the CSV file into a pandas dataframe
-df = pd.read_csv(input_csv)
+df = pd.read_csv('all_tweets_subset.csv')
 # encoding='cp1252'
 
-print(f"ChatGPT analysis on '{input_csv}'.\n")
+t = time.time()
+print('Time at start: ',time.ctime(t))
 
+# ENTER OUTPUT CSV
 # analyze each row and save results to output CSV file
-with open(output_csv, 'w', newline='', encoding='utf-8') as output_file:
+with open('chatgpt_output.csv', 'w', newline='', encoding='utf-8') as output_file:
     writer = csv.writer(output_file)
     # writer.writerow(['date','likeCount', 'rawContent', 'AiOutput'])
     writer.writerow(['rawContent', 'GPTOutput'])
@@ -41,5 +40,5 @@ with open(output_csv, 'w', newline='', encoding='utf-8') as output_file:
         time.sleep(3)  # add a 3-second delay between requests, max 20 requests per min
         # print progress
         print(f"Processed rows {index+1}/{len(df)}")
-
-print(f"ChatGPT analysis finished output to {output_csv}.\n")
+        
+print('Time at finish: ',time.ctime(t))
