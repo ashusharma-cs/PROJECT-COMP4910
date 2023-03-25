@@ -2,8 +2,11 @@ import pandas as pd
 import time
 import openai
 import csv
-openai.api_key = "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"
 
+# ENTER API KEY
+openai.api_key = ""
+
+# I/O CSV files
 input_csv = 'alltweets_labelled_subset.csv'
 output_csv = 'gpt_labelled_tweets.csv'
 
