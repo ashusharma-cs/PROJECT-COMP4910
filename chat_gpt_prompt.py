@@ -40,13 +40,13 @@ with open('chatgpt_output.csv', 'w', newline='', encoding='utf-8') as output_fil
         
         # If you ask in your prompt for ChatGPT to include a number score (0, 1, 0.5, etc)
         # And ask it to format the response so that the score is always included first
-        
+        # Uncomment lines:
         # Create GPTScore row -> writer.writerow(['rawContent', 'relVirtualCare', 'GPTScore', 'GPTOutput'])
-        # Extract it with gptscore
-        # gptscore = int(re.findall(r'^\d+', gptoutput)[0])
+        # Extract it with gptscore -> gptscore = int(re.findall(r'^\d+', gptoutput)[0])
         # Output to CSV -> writer.writerow([text, relVirtualCare, gptscore, gptoutput])
         
         gptoutput = rate_message(text)
+        # gptscore = int(re.findall(r'^\d+', gptoutput)[0])
         writer.writerow([text, relVirtualCare, gptoutput])
         # writer.writerow([text, relVirtualCare, gptscore, gptoutput])
         
